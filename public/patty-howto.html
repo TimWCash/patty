@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Patty — Quick Start</title>
+<style>
+  :root{
+    --navy:#022B3B; --dteal:#124559; --lteal:#628C93; --orange:#CF5C36;
+    --lgray:#E3E0DE; --dgrey:#7F7F7F; --white:#F9F8F8;
+    --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--white);font-family:var(--font);color:var(--dteal);
+    -webkit-font-smoothing:antialiased;padding:40px 28px 56px;line-height:1.5}
+  .sheet{max-width:1080px;margin:0 auto}
+
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+    border-bottom:3px solid var(--orange);padding-bottom:16px;margin-bottom:8px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand svg{width:34px;height:34px}
+  .brand .nm{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--lteal);font-weight:700}
+  h1{font-size:34px;text-transform:uppercase;letter-spacing:.01em;color:var(--dteal);font-weight:800;line-height:1}
+  h1 .o{color:var(--orange)}
+  .lede{color:var(--dgrey);font-size:14px;text-align:right;max-width:280px}
+
+  .connect{background:var(--navy);color:var(--white);border-radius:12px;padding:16px 20px;margin:18px 0 24px;
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .connect .tag{background:var(--orange);color:#2a0f06;font-weight:800;text-transform:uppercase;
+    letter-spacing:.06em;font-size:11px;padding:5px 10px;border-radius:6px;white-space:nowrap}
+  .connect .steps{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--lgray)}
+  .connect b{color:var(--white)}
+  .connect .arrow{color:var(--orange);font-weight:800;margin:0 2px}
+
+  .sech{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--lteal);
+    margin:8px 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:880px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .card{background:#fff;border:1px solid var(--lgray);border-radius:12px;padding:16px 16px 18px;
+    display:flex;flex-direction:column;gap:6px}
+  .card .top{display:flex;align-items:center;gap:10px}
+  .num{width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;
+    font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .card h3{font-size:15.5px;color:var(--dteal);font-weight:800;line-height:1.15}
+  .card p{font-size:13px;color:#3c5560;line-height:1.5}
+  .card .key{display:inline-block;background:var(--lgray);color:var(--dteal);border-radius:5px;
+    padding:1px 7px;font-size:12px;font-weight:700;font-family:ui-monospace,Menlo,monospace}
+  .card .pill{display:inline-block;background:rgba(207,92,54,.12);color:var(--orange);border-radius:5px;
+    padding:1px 7px;font-size:11.5px;font-weight:700}
+
+  .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+  @media(min-width:880px){.roles{grid-template-columns:repeat(4,1fr)}}
+  .role{border:1px solid var(--lgray);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;
+    padding:10px 12px;background:#fff}
+  .role b{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--dteal)}
+  .role span{font-size:12px;color:var(--dgrey)}
+
+  footer{margin-top:26px;border-top:1px solid var(--lgray);padding-top:14px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--dgrey)}
+  footer a{color:var(--orange);text-decoration:none;font-weight:700}
+  .print{background:none;border:1px solid var(--lteal);color:var(--dteal);border-radius:8px;
+    padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font)}
+  @media print{body{padding:0}.print{display:none}.card,.role,.connect{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div>
+      <div class="brand">
+        <svg viewBox="0 0 100 100"><polygon points="50,10 90,82 10,82" fill="#CF5C36"/><polygon points="50,40 74,82 26,82" fill="#628C93"/></svg>
+        <span class="nm">Patty · Service Physics</span>
+      </div>
+      <h1 style="margin-top:10px">QUICK <span class="o">START</span></h1>
+    </div>
+    <p class="lede">Your client hub, at a glance. Everything you need for day one is on this page.</p>
+  </header>
+
+  <div class="connect">
+    <span class="tag">First time? Connect once</span>
+    <div class="steps">
+      <span><b>1.</b> Sign in with Microsoft</span>
+      <span class="arrow">›</span>
+      <span><b>2.</b> Open <b>Connections</b> (Settings)</span>
+      <span class="arrow">›</span>
+      <span><b>3.</b> Paste your <b>ClickUp</b> token + <b>SharePoint</b> site</span>
+      <span class="arrow">›</span>
+      <span><b>4.</b> Watch the readiness ring hit 4 / 4</span>
+    </div>
+  </div>
+
+  <div class="sech">The daily moves</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="top"><span class="num">1</span><h3>Find anything fast</h3></div>
+      <p>Press <span class="key">⌘K</span> / <span class="key">Ctrl K</span> anywhere, or use the top search bar. Jump straight to any client, person, or deal.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">2</span><h3>Open a client</h3></div>
+      <p><b>Companies</b> &rsaquo; click a name. You get the profile (units, revenue, competitors), the full activity timeline, contacts, emails, documents, and engagements.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">3</span><h3>Log what happened</h3></div>
+      <p>On any client, use <b>Add a note</b> for calls, takeaways, and next steps. It lands in the timeline instantly and shows up on Home.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">4</span><h3>Move a deal</h3></div>
+      <p>On the <b>Pipeline</b> board, use the stage buttons: Intro &rsaquo; Pitch &rsaquo; No-fee &rsaquo; Fee &rsaquo; Won / Lost. <span class="pill">Syncs to ClickUp</span></p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">5</span><h3>Catch new leads</h3></div>
+      <p>Website Contact Us submissions auto-create a prospect and a follow-up task. Find them in the <b>Leads</b> inbox (sidebar badge) and hit <b>Mark reviewed</b>.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">6</span><h3>Don't lose old clients</h3></div>
+      <p><b>Home</b> flags any past client untouched for 6+ months. The re-engagement banner tells you exactly who to reach out to.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">7</span><h3>Email &amp; documents</h3></div>
+      <p><b>Emails</b> and <b>Documents</b> pull live from Outlook, OneDrive, and SharePoint the moment you sign in with Microsoft. No forwarding, no duplicates.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">8</span><h3>Tasks &amp; ClickUp</h3></div>
+      <p>On <b>Tasks</b>, move a task's status. With ClickUp connected, status changes and comments push back to your ClickUp board automatically.</p>
+    </div>
+
+    <div class="card">
+      <div class="top"><span class="num">9</span><h3>Scope by year</h3></div>
+      <p>Use the <b>All / 2025 / 2026 / 2027</b> pills at the top to focus dashboards, pipeline, and lists on a single year.</p>
+    </div>
+
+  </div>
+
+  <div class="sech" style="margin-top:24px">Who can do what</div>
+  <div class="roles">
+    <div class="role"><b>Admin</b><span>Everything, plus manage people and connections.</span></div>
+    <div class="role"><b>Member</b><span>Work the data: notes, pipeline, tasks, leads.</span></div>
+    <div class="role"><b>Contributor</b><span>Add notes and handle leads.</span></div>
+    <div class="role"><b>Observer</b><span>View only. No edits.</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--dgrey);margin-top:10px">Admins assign roles on the <b>Access</b> page. New sign-ins start as Observer.</p>
+
+  <footer>
+    <span>Full setup and deployment notes live in the README.</span>
+    <span><a href="https://github.com/TimWCash/patty">github.com/TimWCash/patty</a></span>
+    <button class="print" onclick="window.print()">Print / Save as PDF</button>
+  </footer>
+
+</div>
+</body>
+</html>
