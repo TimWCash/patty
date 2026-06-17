@@ -45,13 +45,13 @@
 
   /* problem chips */
   .chips{position:relative;width:100%;height:46vh}
-  .chip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#cfd8db;
-    padding:1.4vh 2.2vw;border-radius:10px;font-size:1.5vw;font-weight:700;letter-spacing:.02em;
-    display:flex;align-items:center;gap:.6vw;filter:grayscale(1) opacity(.85)}
-  .scene.active .chip{animation:scatter 1.6s cubic-bezier(.2,.8,.2,1) both}
-  @keyframes scatter{from{transform:translate(-50%,-50%) scale(.6);opacity:0}
-    to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:1}}
+  .chip{position:absolute;transform:translate(-50%,-50%) scale(1) rotate(var(--r));
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:#dbe3e6;
+    padding:1.3vh 2vw;border-radius:10px;font-size:1.5vw;font-weight:700;letter-spacing:.01em;
+    white-space:nowrap;filter:grayscale(1)}
+  .scene.active .chip{animation:scatter 1s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes scatter{from{opacity:0;transform:translate(-50%,-50%) scale(.5) rotate(var(--r))}
+    to{opacity:.92;transform:translate(-50%,-50%) scale(1) rotate(var(--r))}}
 
   /* turn: collapse */
   .scene.active .collapse{animation:collapse 1.4s .2s cubic-bezier(.6,0,.2,1) both}
@@ -211,7 +211,7 @@
       <h2 class="title up2">EVERY CLIENT. ONE <span class="o">HUB</span>.</h2>
       <div class="kpis">
         <div class="kpi up"><div class="n" data-count="97">0</div><div class="l">Clients</div></div>
-        <div class="kpi up2"><div class="n" data-count="47">0</div><div class="l">In the funnel</div></div>
+        <div class="kpi up2"><div class="n" data-count="85">0</div><div class="l">From ClickUp</div></div>
         <div class="kpi up3"><div class="n" data-count="44">0</div><div class="l">Enriched profiles</div></div>
       </div>
     </section>
@@ -257,7 +257,7 @@
         <div class="col won"><h4>Won</h4></div>
         <div class="col"><h4>Lost</h4><div class="pc">Top Golf</div></div>
       </div>
-      <div class="hero">Harbor Light · $145K</div>
+      <div class="hero">Peet's Coffee</div>
     </section>
 
     <section class="scene shot" data-id="shot-pipeline">
@@ -353,14 +353,14 @@
   var runId=0, audio=null, master=null, drone=[], soundOn=true;
 
   // ---- build problem chips ----
-  var labels=["Outlook","SharePoint","Slack","ClickUp","Spreadsheets","Email threads"];
-  var pos=[[-28,-14,-6],[26,-16,5],[-22,16,-4],[24,14,6],[-4,-22,-2],[6,22,3]];
+  var labels=["Outlook","SharePoint","Slack","ClickUp","Spreadsheets"];
+  var pos=[[20,30,-6],[73,24,5],[27,70,4],[78,64,-5],[50,48,2]]; // left%, top%, rotate
   var chips=document.getElementById("chips");
   labels.forEach(function(l,i){
     var c=document.createElement("div"); c.className="chip"; c.textContent=l;
-    c.style.setProperty("--x",(50+pos[i][0])+"%");
-    c.style.setProperty("--y",(50+pos[i][1])+"%");
+    c.style.left=pos[i][0]+"%"; c.style.top=pos[i][1]+"%";
     c.style.setProperty("--r",pos[i][2]+"deg");
+    c.style.animationDelay=(i*0.1)+"s";
     chips.appendChild(c);
   });
 
