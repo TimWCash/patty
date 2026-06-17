@@ -53,6 +53,21 @@
   @keyframes scatter{from{opacity:0;transform:translate(-50%,-50%) scale(.5) rotate(var(--r))}
     to{opacity:.92;transform:translate(-50%,-50%) scale(1) rotate(var(--r))}}
 
+  /* crm shortlist */
+  .crmrow{display:flex;flex-wrap:wrap;gap:1.2vw;justify-content:center;margin:2.5vh 0 0;max-width:84%}
+  .crm{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);
+    color:#cfd8db;padding:1.2vh 1.9vw;border-radius:10px;font-size:1.9vw;font-weight:700;opacity:0}
+  .crm::after{content:"";position:absolute;left:7%;right:7%;top:52%;height:.4vh;background:var(--orange);
+    transform:scaleX(0);transform-origin:left;border-radius:2px}
+  .scene.active .crm{animation:up .6s both}
+  .scene.active .crm:nth-child(1){animation-delay:.1s}
+  .scene.active .crm:nth-child(2){animation-delay:.25s}
+  .scene.active .crm:nth-child(3){animation-delay:.4s}
+  .scene.active .crm:nth-child(4){animation-delay:.55s}
+  .scene.active .crm:nth-child(5){animation-delay:.7s}
+  .scene.active .crm::after{animation:strike .5s 1.3s forwards}
+  @keyframes strike{to{transform:scaleX(1)}}
+
   /* turn: collapse */
   .scene.active .collapse{animation:collapse 1.4s .2s cubic-bezier(.6,0,.2,1) both}
   @keyframes collapse{0%{transform:scale(2.4);opacity:0;filter:blur(6px)}
@@ -196,13 +211,27 @@
       <div class="chips" id="chips"></div>
     </section>
 
+    <!-- 2b CRM SHORTLIST -->
+    <section class="scene" data-id="crm">
+      <p class="kicker up">We shopped the big names</p>
+      <h2 class="title up2" style="font-size:4.6vw">EVERY CRM WANTED A <span class="o">FORTUNE</span>.</h2>
+      <div class="crmrow">
+        <span class="crm">HubSpot</span>
+        <span class="crm">Salesforce</span>
+        <span class="crm">Microsoft Dynamics</span>
+        <span class="crm">Zoho</span>
+        <span class="crm">Pipedrive</span>
+      </div>
+      <p class="sub up3">The license costs and rollout timelines were outrageous.</p>
+    </section>
+
     <!-- 3 TURN -->
     <section class="scene" data-id="turn">
       <svg class="mark collapse" viewBox="0 0 100 100">
         <polygon points="50,10 90,82 10,82" fill="#CF5C36"/>
         <polygon points="50,40 74,82 26,82" fill="#628C93"/>
       </svg>
-      <h2 class="title up2">SO WE BUILT <span class="o">OURS</span>.</h2>
+      <h2 class="title up2">SO WE BUILT OUR <span class="o">OWN</span>.</h2>
     </section>
 
     <!-- 4 HUB -->
@@ -341,7 +370,7 @@
 
 <script>
 (function(){
-  var steps=[["cold",6500],["problem",6000],["turn",3500],["hub",4500],["shot-home",5000],
+  var steps=[["cold",6500],["problem",5500],["crm",6500],["turn",3500],["hub",4500],["shot-home",5000],
              ["realdata",7500],["shot-cava",5000],["pipeline",8000],["shot-pipeline",5000],
              ["flows",9000],["shot-connections",5000],["shot-documents",4500],
              ["auto",8000],["shot-leads",4500],["close",8000]];
@@ -400,7 +429,7 @@
       },1400);
       s._iv=iv;
     }
-    if(id==="hub"||id==="realdata"||id==="pipeline"||id==="auto"||id.indexOf("shot-")===0){whoosh();}
+    if(id==="crm"||id==="hub"||id==="realdata"||id==="pipeline"||id==="auto"||id.indexOf("shot-")===0){whoosh();}
     if(id==="close"){hit();}
   }
   function onExit(id){var s=scenes[id]; if(s._iv){clearInterval(s._iv);s._iv=null;}
