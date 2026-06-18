@@ -143,6 +143,30 @@
   .role{background:rgba(98,140,147,.18);border:1px solid var(--lteal);color:var(--lgray);
     border-radius:999px;padding:.9vh 1.6vw;font-size:1.1vw;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
 
+  /* ask patty (AI assistant) */
+  .chat{width:66%;max-width:780px;display:flex;flex-direction:column;gap:2vh;margin-top:3vh}
+  .msg{display:flex;gap:1vw;align-items:flex-end}
+  .msg.me{flex-direction:row-reverse;opacity:0}
+  .msg.ai{opacity:0}
+  .bub{max-width:88%;padding:1.5vh 1.6vw;border-radius:16px;font-size:1.45vw;font-weight:600;line-height:1.35;text-align:left}
+  .msg.me .bub{background:#1b4d5f;color:#eaf1f3;border-bottom-right-radius:4px}
+  .msg.ai .bub{background:var(--white);color:var(--navy);border-bottom-left-radius:4px}
+  .msg.ai .bub b{color:var(--orange)}
+  .av{width:3.2vw;height:3.2vw;border-radius:50%;background:var(--orange);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .av svg{width:1.7vw;height:1.7vw}
+  .dots{display:flex;gap:.5vw;align-self:flex-end}
+  .dots i{width:.9vw;height:.9vw;border-radius:50%;background:var(--lteal);animation:bounce 1s infinite}
+  .dots i:nth-child(2){animation-delay:.15s}
+  .dots i:nth-child(3){animation-delay:.3s}
+  @keyframes bounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-.7vh);opacity:1}}
+  .trow{overflow:hidden}
+  .scene.active .msg.me{animation:up .6s .3s both}
+  .scene.active .trow{animation:typcollapse 2.7s 1.1s both}
+  .scene.active .arow{animation:up .55s 2.75s both}
+  @keyframes typcollapse{0%{opacity:0;transform:translateY(2vh);max-height:14vh}
+    14%{opacity:1;transform:none}76%{opacity:1;max-height:14vh;margin-bottom:0}
+    100%{opacity:0;max-height:0;margin-bottom:-2vh}}
+
   /* close */
   .closemark{width:13vw;height:13vw;margin-bottom:2vh}
   .url{margin-top:3vh;font-size:1.3vw;color:var(--lteal);letter-spacing:.06em}
@@ -320,6 +344,25 @@
       <div class="lower"><span class="ll">Live from SharePoint <span class="o">&amp; OneDrive</span>.</span></div>
     </section>
 
+    <!-- 7b ASK PATTY -->
+    <section class="scene" data-id="ask">
+      <p class="kicker up">Ask in plain English</p>
+      <h2 class="title up2" style="font-size:4.6vw">JUST ASK <span class="o">PATTY</span>.</h2>
+      <div class="chat">
+        <div class="msg me">
+          <div class="bub">Which past clients haven't we touched in six months?</div>
+        </div>
+        <div class="msg ai trow">
+          <div class="av"><svg viewBox="0 0 100 100"><polygon points="50,16 84,80 16,80" fill="#fff"/></svg></div>
+          <div class="bub dots"><i></i><i></i><i></i></div>
+        </div>
+        <div class="msg ai arow">
+          <div class="av"><svg viewBox="0 0 100 100"><polygon points="50,16 84,80 16,80" fill="#fff"/></svg></div>
+          <div class="bub">Three: <b>Dave's Hot Chicken</b>, <b>Brinker</b>, and <b>Fuzzy's Taco Shop</b>. Want me to draft re-engagement notes?</div>
+        </div>
+      </div>
+    </section>
+
     <!-- 8 AUTOMATION -->
     <section class="scene" data-id="auto">
       <p class="kicker up">From the website, hands-free</p>
@@ -373,7 +416,7 @@
   var steps=[["cold",6500],["problem",5500],["crm",6500],["turn",3500],["hub",4500],["shot-home",5000],
              ["realdata",7500],["shot-cava",5000],["pipeline",8000],["shot-pipeline",5000],
              ["flows",9000],["shot-connections",5000],["shot-documents",4500],
-             ["auto",8000],["shot-leads",4500],["close",8000]];
+             ["ask",7500],["auto",8000],["shot-leads",4500],["close",8000]];
   ["home","cava","pipeline","connections","documents","leads"].forEach(function(n){var i=new Image();i.src="/reel/"+n+".png";});
   var total=steps.reduce(function(a,s){return a+s[1]},0);
   var scenes={}; document.querySelectorAll(".scene").forEach(function(s){scenes[s.dataset.id]=s});
@@ -429,7 +472,7 @@
       },1400);
       s._iv=iv;
     }
-    if(id==="crm"||id==="hub"||id==="realdata"||id==="pipeline"||id==="auto"||id.indexOf("shot-")===0){whoosh();}
+    if(id==="crm"||id==="hub"||id==="realdata"||id==="pipeline"||id==="auto"||id==="ask"||id.indexOf("shot-")===0){whoosh();}
     if(id==="close"){hit();}
   }
   function onExit(id){var s=scenes[id]; if(s._iv){clearInterval(s._iv);s._iv=null;}
