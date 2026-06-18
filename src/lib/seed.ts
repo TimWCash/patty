@@ -405,6 +405,44 @@ realClients.forEach((group) => {
 });
 console.log(`Imported ${realCount} real clients from ClickUp (${enrichedCount} enriched with profile data).`);
 
+// ACSI 2026 top-chain prospect targets (chains not already in Patty).
+// [name, segment, rank within segment, parent already in Patty (warm path) or null]
+const acsiTargets: [string, string, number, string | null][] = [
+  ["LongHorn Steakhouse", "Full Service", 1, "Darden Restaurants"],
+  ["Texas Roadhouse", "Full Service", 2, null],
+  ["Olive Garden", "Full Service", 3, "Darden Restaurants"],
+  ["Applebee's", "Full Service", 4, "parent Dine Brands already in Patty"],
+  ["Cracker Barrel", "Full Service", 6, null],
+  ["Golden Corral", "Full Service", 7, null],
+  ["Outback Steakhouse", "Full Service", 8, "Bloomin' Brands"],
+  ["The Cheesecake Factory", "Full Service", 9, null],
+  ["Buffalo Wild Wings", "Full Service", 10, "parent Roark Capital (Inspire Brands) already in Patty"],
+  ["Red Lobster", "Full Service", 11, null],
+  ["Red Robin", "Full Service", 12, null],
+  ["Denny's", "Full Service", 13, null],
+  ["Chick-fil-A", "Chicken QSR", 1, null],
+  ["KFC", "Chicken QSR", 2, "Yum! Brands (see Pizza Hut - Yum Brands)"],
+  ["Raising Cane's", "Chicken QSR", 3, null],
+  ["Popeyes", "Chicken QSR", 5, "parent RBI already in Patty"],
+  ["Jersey Mike's", "Sandwich QSR", 1, "parent Roark Capital already in Patty"],
+  ["Jimmy John's", "Sandwich QSR", 2, "parent Roark Capital (Inspire Brands) already in Patty"],
+  ["Arby's", "Sandwich QSR", 4, "parent Roark Capital (Inspire Brands) already in Patty"],
+  ["Papa Johns", "Pizza QSR", 1, null],
+  ["Domino's", "Pizza QSR", 3, null],
+  ["Little Caesars", "Pizza QSR", 4, null],
+  ["Burger King", "Burger QSR", 1, "parent RBI already in Patty"],
+  ["Culver's", "Burger QSR", 2, "parent Roark Capital already in Patty"],
+  ["Sonic", "Burger QSR", 3, "parent Roark Capital (Inspire Brands) already in Patty"],
+  ["Five Guys", "Burger QSR", 5, null],
+];
+let acsiCount = 0;
+acsiTargets.forEach(([name, segment, rank, parent], i) => {
+  const note = `ACSI 2026 #${rank} ${segment} target${parent ? ` · ${parent}` : ""}`;
+  insCompany.run(name, segment, null, "prospect", note, daysAgo(2 + (i % 4)));
+  acsiCount++;
+});
+console.log(`Imported ${acsiCount} ACSI 2026 chain targets.`);
+
 db.prepare("INSERT INTO settings (key, value) VALUES ('seeded_at', datetime('now'))").run();
 
 const counts = ["companies", "contacts", "engagements", "emails", "documents", "tasks", "activities", "meetings"]
